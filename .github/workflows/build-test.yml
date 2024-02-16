@@ -1,0 +1,40 @@
+name: build-test
+
+on:
+  pull_request:
+    paths-ignore:
+      - "*.md"
+  push:
+    paths-ignore:
+      - "*.md"
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          sudo apt update && sudo apt install -y libssl-dev pkg-config jq && \
+          wget -O /tmp/cargo-make.zip https://github.com/sagiegurari/cargo-make/releases/download/0.37.5/cargo-make-v0.37.5-x86_64-unknown-linux-gnu.zip &&
+          sudo unzip /tmp/cargo-make.zip -d /tmp &&
+          sudo mv /tmp/cargo-make-v0.37.5-x86_64-unknown-linux-gnu/cargo-make $HOME/.cargo/bin/cargo-make &&
+          sudo chmod +x $HOME/.cargo/bin/cargo-make
+      - name: Install dfx
+        run: echo y | sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          components: rustfmt, clippy
+          target: wasm32-unknown-unknown
+      - name: Unit Tests
+        run: cargo make test
+      - name: Format
+        run: cargo make check-format
+      - name: Lint
+        run: cargo make lint

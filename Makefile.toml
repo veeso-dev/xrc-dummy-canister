@@ -1,0 +1,56 @@
+[env]
+CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = true
+
+[tasks.build]
+description = "Build canisters"
+dependencies = []
+command = "dfx"
+args = ["build"]
+workspace = false
+
+[tasks.run]
+description = "Run app"
+dependencies = []
+command = "cargo"
+args = ["run"]
+workspace = false
+
+[tasks.test]
+description = "Run unit tests"
+command = "cargo"
+args = ["test", "--lib"]
+dependencies = ["did"]
+workspace = false
+
+
+[tasks.lint]
+description = "Run lint"
+command = "cargo"
+args = ["clippy", "--", "-Dwarnings"]
+workspace = false
+
+[tasks.format]
+description = "Run the cargo rustfmt plugin."
+command = "cargo"
+args = ["fmt", "--all"]
+
+[tasks.check-format]
+description = "Run the cargo rustfmt plugin."
+command = "cargo"
+args = ["fmt", "--all", "--", "--check"]
+
+[tasks.did]
+description = "Generate did files"
+script = "cargo run --bin icrc2-template-canister-did  --features did > src/icrc2-template-canister.did"
+workspace = false
+
+[tasks.dfx-generate]
+description = "Generate dfx did"
+command = "dfx"
+args = ["generate"]
+workspace = false
+
+[tasks.dfx-setup]
+description = "setup dfx"
+script = "dfx stop; dfx start --background; dfx canister create icrc2-template-canister"
+workspace = false

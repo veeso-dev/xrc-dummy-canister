@@ -1,0 +1,18 @@
+{
+  "canisters": {
+    "icrc2-template-canister": {
+      "candid": "src/icrc2-template-canister.did",
+      "package": "icrc2_template_canister",
+      "type": "rust"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+
+  "output_env_file": ".env",
+  "version": 1
+}
