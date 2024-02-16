@@ -41,7 +41,7 @@ args = ["fmt", "--all", "--", "--check"]
 
 [tasks.did]
 description = "Generate did files"
-script = "cargo run --bin icrc2-template-canister-did  --features did > src/icrc2-template-canister.did"
+script = "cargo run --bin xrc-dummy-canister-did  --features did > src/xrc-dummy-canister.did"
 workspace = false
 
 [tasks.dfx-generate]
@@ -52,5 +52,5 @@ workspace = false
 
 [tasks.dfx-setup]
 description = "setup dfx"
-script = "dfx stop; dfx start --background; dfx canister create icrc2-template-canister"
+script = "dfx stop; dfx start --background; dfx canister create xrc-dummy-canister"
 workspace = false

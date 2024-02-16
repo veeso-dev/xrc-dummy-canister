@@ -1,19 +1,19 @@
 [package]
-name = "icrc2_template_canister"
+name = "xrc_dummy_canister"
 authors = ["Christian Visintin <christian.visintin@veeso.dev>"]
 edition = "2021"
 license = "MIT"
 readme = "README.md"
 description = "ICRC2 Template Canister"
-repository = "https://github.com/veeso-dev/icrc2-template-canister"
+repository = "https://github.com/veeso/xrc-dummy-canister"
 version = "0.1.0"
 
 [[bin]]
-name = "icrc2-template-canister-did"
+name = "xrc-dummy-canister-did"
 path = "src/lib.rs"
 
 [lib]
-name = "icrc2_template_canister"
+name = "xrc_dummy_canister"
 crate-type = ["cdylib"]
 
 [features]
@@ -22,12 +22,11 @@ did = []
 
 [dependencies]
 bytes = "1.5"
-candid = "0.9"
-ic-cdk = "0.11"
+candid = "0.10"
+ic-cdk = "0.12"
 ic-cdk-macros = "0.8"
-ic-cdk-timers = "0.5"
 ic-stable-structures = "0.6"
-icrc-ledger-types = "0.1"
+ic-xrc-types = "1.2"
 num-bigint = "0.4"
 num-traits = "0.2"
 serde = { version = "1", features = ["derive"] }

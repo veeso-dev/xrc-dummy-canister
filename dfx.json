@@ -1,8 +1,8 @@
 {
   "canisters": {
-    "icrc2-template-canister": {
-      "candid": "src/icrc2-template-canister.did",
-      "package": "icrc2_template_canister",
+    "xrc-dummy-canister": {
+      "candid": "src/xrc-dummy-canister.did",
+      "package": "xrc_dummy_canister",
       "type": "rust"
     }
   },
